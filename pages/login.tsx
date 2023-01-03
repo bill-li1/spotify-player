@@ -1,8 +1,8 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ClientSafeProvider, getProviders, signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 
 const Login: NextPage = ({
   providers,
@@ -10,7 +10,7 @@ const Login: NextPage = ({
   const router = useRouter();
   const { from } = router.query;
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2 bg-black">
+    <div className="flex min-h-screen flex-col items-center justify-center py-2">
       {Object.values(providers).map((provider) => (
         <div key={(provider as ClientSafeProvider).name}>
           <button

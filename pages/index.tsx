@@ -1,11 +1,13 @@
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
+import { GetServerSideProps } from "next";
 import Head from "next/head";
-//import Image from "next/image";
-import type { NextPage } from "next";
-import useSpotify from "../hooks/useSpotify";
 import Link from "next/link";
+import type { NextPage } from "next";
+import { Session } from "next-auth";
+import { getSession } from "next-auth/react";
+import useSpotify from "../hooks/useSpotify";
 
 const Home: NextPage = () => {
   const spotifyApi = useSpotify();
@@ -27,14 +29,14 @@ const Home: NextPage = () => {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center pb-2 bg-black text-white text-xl">
+      <div className="flex min-h-screen flex-col items-center justify-center pb-2 text-white text-xl">
         Loading...
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center pb-2 bg-black">
+    <div className="flex min-h-screen flex-col items-center justify-center pb-2">
       <Head>
         <title>Spotify Player</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
@@ -46,9 +48,8 @@ const Home: NextPage = () => {
           </h1>
           <p className="mt-3 text-2xl ">
             {playlists.map((playlist) => (
-              <Link href={`/${playlist.id}`}>
+              <Link href={`/${playlist.id}`} key={playlist.id}>
                 <button
-                  key={playlist.id}
                   type="button"
                   className="font-bold m-[6px] inline-block px-6 py-2.5 bg-blue-600 text-white text-lg leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
@@ -68,6 +69,16 @@ const Home: NextPage = () => {
       </button>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<{
+  session: Session | null;
+}> = async (context) => {
+  const session = await getSession(context);
+  console.log("session", session);
+  return {
+    props: { session },
+  };
 };
 
 export default Home;
