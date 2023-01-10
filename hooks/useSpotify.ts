@@ -12,10 +12,10 @@ function useSpotify() {
   const { data: session } = useSession();
   useEffect(() => {
     if (session) {
-      if (session.error === "RefreshAccessTokenError") {
+      if (session?.error === "RefreshAccessTokenError") {
         signIn();
       }
-      spotifyApi.setAccessToken(session.user?.accessToken as string);
+      spotifyApi.setAccessToken(session?.user?.accessToken as string);
     }
   }, [session]);
   return spotifyApi;
