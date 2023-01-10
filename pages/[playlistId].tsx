@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../components/navbar";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -22,6 +21,7 @@ const Playlist = () => {
         (async () => {
           const playlist = await spotifyApi.getPlaylist(playlistId as string);
           setPlaylistData(playlist.body);
+          setLoading(false);
         })();
       } catch (error) {
         console.error(error);
@@ -47,10 +47,6 @@ const Playlist = () => {
                 fill={true}
                 priority={true}
                 style={{ objectFit: "cover" }}
-                onLoadingComplete={() => {
-                  console.log("Image loaded");
-                  setLoading(false);
-                }}
               />
             </div>
             <div className="text-2xl text-white mt-4">{playlistData?.name}</div>
