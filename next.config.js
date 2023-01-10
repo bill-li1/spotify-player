@@ -3,8 +3,8 @@
  */
 /* eslint-env node */
 module.exports = {
-  reactStrictMode: true,
   extends: ['plugin:@next/next/recommended'],
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
