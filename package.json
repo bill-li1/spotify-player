@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "eslint": "^8.28.0",
-    "eslint-config-next": "13.0.4",
+    "eslint-config-next": "^0.2.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "next": "latest",
