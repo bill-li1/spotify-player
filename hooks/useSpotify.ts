@@ -16,8 +16,8 @@ function useSpotify() {
     },
   });
   useEffect(() => {
-    if (session && status === "authenticated") {
-      spotifyApi.setAccessToken(session.accessToken as string);
+    if (session && session.user && status === "authenticated") {
+      spotifyApi.setAccessToken(session.user.accessToken as string);
     }
   }, [session]);
   return spotifyApi;
