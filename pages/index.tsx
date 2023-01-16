@@ -2,7 +2,6 @@ import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import { GetServerSideProps } from "next";
-import Head from "next/head";
 import Link from "next/link";
 import type { NextPage } from "next";
 import { Session } from "next-auth";
@@ -37,13 +36,11 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center pb-2">
-      <Head>
-        <title>Spotify Player</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-      </Head>
+      <title>Spotify Player</title>
+      {/* <link rel="icon" href="/favicon.ico" /> */}
       <div className="flex flex-1 items-center flex-col justify-center">
         <main className="max-w-6xl px-24 text-center">
-          <h1 className="text-6xl font-bold pb-2 text-white">
+          <h1 className="text-6xl font-bold pb-2 text-black">
             Welcome to Spotify
           </h1>
           <p className="mt-3 text-2xl ">
@@ -75,7 +72,6 @@ export const getServerSideProps: GetServerSideProps<{
   session: Session | null;
 }> = async (context) => {
   const session = await getSession(context);
-  console.log("session", session);
   return {
     props: { session },
   };

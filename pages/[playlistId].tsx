@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Image from "next/image";
-import Navbar from "../components/navbar";
+import Player from "../components/player";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import useSpotify from "../hooks/useSpotify";
@@ -12,7 +11,7 @@ const Playlist = () => {
   const router = useRouter();
   const { playlistId } = router.query;
   const [loading, setLoading] = useState(true);
-  const [playlistData, setPlaylistData] =
+  const [playlist, setPlaylist] =
     useState<SpotifyApi.SinglePlaylistResponse | null>(null);
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const Playlist = () => {
       try {
         (async () => {
           const playlist = await spotifyApi.getPlaylist(playlistId as string);
-          setPlaylistData(playlist.body);
+          setPlaylist(playlist.body);
           setLoading(false);
         })();
       } catch (error) {
@@ -28,6 +27,18 @@ const Playlist = () => {
       }
     }
   }, [playlistId, session, spotifyApi]);
+
+  const playlistData =
+    playlist?.tracks.items
+      .filter((track) => track?.track?.album?.images?.[0]?.url)
+      .map((track) => ({
+        id: track?.track?.id || "",
+        uri: track?.track?.uri || "",
+        title: track?.track?.name || "",
+        artist: track?.track?.artists.map((artist) => artist.name) || [],
+        album: track?.track?.album.name || "",
+        image: track?.track?.album.images?.[0]?.url || "",
+      })) || [];
 
   return (
     <>
@@ -37,20 +48,7 @@ const Playlist = () => {
         </div>
       ) : (
         <div className="flex flex-col h-screen overflow-hidden">
-          <Navbar />
-          <div className="flex flex-grow flex-col justify-center items-center">
-            <div className="h-80 w-80 box-content relative">
-              <Image
-                src={playlistData?.images?.[0]?.url || ""}
-                alt="Playlist Cover"
-                sizes="100%"
-                fill={true}
-                priority={true}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div className="text-2xl text-white mt-4">{playlistData?.name}</div>
-          </div>
+          <Player playlistData={playlistData} />
         </div>
       )}
     </>
