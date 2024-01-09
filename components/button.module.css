@@ -1,0 +1,84 @@
+/* ------------ GOOGLE FONTS ------------ */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* ---------- BUTTON --------- */
+.btn {
+  width: 10em;
+  height: 4.2em;
+  border-radius: 20em;
+  box-shadow: 0 1em 1em rgba(0, 0, 0, 0.5);
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: transform 0.3s ease;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 350%;
+  --bg-color: #151320;
+  --conic-gradient: conic-gradient(
+    #ff2e2e,
+    #ff831e,
+    #fcff51,
+    #58ff57,
+    #575fff,
+    #d257ff,
+    #ff57e5,
+    #ff1556
+  );
+  background: var(--conic-gradient);
+}
+
+.btn::after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  /* background-color: var(--bg-color); */
+  background-color: #151320;
+  width: 91%;
+  height: 86%;
+  border-radius: 1em;
+
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.6em;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn:hover::before {
+  animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
