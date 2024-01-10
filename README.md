@@ -2,7 +2,7 @@
 
 Welcome to the repository of what we boldly call "The Prettiest Spotify Web Player" – a unique, visually enchanting web player designed to elevate your Spotify listening experience.
 
-![Demo GIF](./Spotify Demo.gif)
+![Demo GIF](https://github.com/bill-li1/spotify-player/blob/main/Spotify%20Demo.gif)
 
 ## Getting Started
 
