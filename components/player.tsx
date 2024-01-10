@@ -5,7 +5,6 @@ import Image from "next/image";
 import Navbar from "./navbar";
 import styles from "./cards.module.css";
 import { useDrag } from "react-use-gesture";
-import { useSession } from "next-auth/react";
 import useSpotify from "../hooks/useSpotify";
 
 const after = (i: number) => ({
