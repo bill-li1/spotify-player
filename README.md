@@ -1,27 +1,35 @@
-# Next.js + Tailwind CSS Example
+# The Prettiest Spotify Web Player
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Welcome to the repository of what we boldly call "The Prettiest Spotify Web Player" – a unique, visually enchanting web player designed to elevate your Spotify listening experience.
 
-## Deploy your own
+![Demo GIF](./Spotify Demo.gif)
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Getting Started
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+### Prerequisites
 
-## How to use
+- A Spotify account: You need a Spotify account to access their Web API.
+- Spotify App Registration: You must register your application on the Spotify Developer Dashboard. Upon registration, you'll receive a Client ID and Client Secret, which are needed to authenticate your app with the Spotify API.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+### Installation
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+1. Clone the repository
 
 ```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
+git clone git@github.com:bill-li1/spotify-player.git
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+2. Install NPM Packages
+
+```bash
+npm install
+```
+
+3. Create a .env.local file in the root of your project and insert your Spotify credentials and other necessary environment variables as follows:
+
+```
+NEXTAUTH_URL=http://localhost:3000
+NEXT_PUBLIC_CLIENT_ID=YOUR_CLIENT_ID
+NEXT_PUBLIC_CLIENT_SECRET=YOUR_CLIENT_SECRET
+JWT_SECRET=super_secret_value
+```
