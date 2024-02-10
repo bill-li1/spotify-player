@@ -1,10 +1,8 @@
-  # The Prettiest Spotify Web Player
+# The Prettiest Spotify Web Player
 
 Welcome to the repository of what we boldly call "The Prettiest Spotify Web Player" – a unique, visually enchanting web player designed to elevate your Spotify listening experience.
 
 https://github.com/bill-li1/spotify-player/assets/38056522/82a0b852-8d0e-4017-81bf-12d37b67975b
-
-
 
 ## Getting Started
 

@@ -28,7 +28,6 @@ const Login: NextPage = ({
                   })
                 }
                 className={styles.btn}
-                // className="text-white bg-[#1DB954] hover:bg-[#1BA84C]/90 focus:ring-4 focus:outline-none focus:ring-[#189544]/50 font-medium rounded-3xl text-2xl px-6 py-2 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
               >
                 <div className={styles.btnContent}>
                   <svg
