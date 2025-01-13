@@ -2,7 +2,10 @@ import Link from "next/link";
 import useSpotify from "../hooks/useSpotify";
 
 const Navbar = () => {
-  const spotifyApi = useSpotify();
+  const { spotifyApi } = useSpotify();
+  if (!spotifyApi) {
+    console.log("test");
+  }
   return (
     <nav className="relative w-full flex flex-wrap items-center justify-between text-white">
       <Link href="/">

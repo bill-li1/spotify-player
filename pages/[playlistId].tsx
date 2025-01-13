@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
+import Loading from "../components/loading";
 import Player from "../components/player";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import Loading from "../components/loading";
 import useSpotify from "../hooks/useSpotify";
 
 const Playlist = () => {
-  const spotifyApi = useSpotify();
+  const { spotifyApi } = useSpotify();
   const { data: session } = useSession();
   const router = useRouter();
   const { playlistId } = router.query;

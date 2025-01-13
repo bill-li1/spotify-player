@@ -10,7 +10,7 @@ import Loading from "../components/loading";
 import useSpotify from "../hooks/useSpotify";
 
 const Home: NextPage = () => {
-  const spotifyApi = useSpotify();
+  const { spotifyApi } = useSpotify();
   const { data: session } = useSession();
   const [loading, setLoading] = useState(true);
   const [playlists, setPlaylists] = useState<

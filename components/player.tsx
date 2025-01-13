@@ -2,10 +2,10 @@ import { animated, to, useSprings } from "react-spring";
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
+import Loading from "./loading";
 import Navbar from "./navbar";
 import styles from "./cards.module.css";
 import { useDrag } from "react-use-gesture";
-import Loading from "./loading";
 import useSpotify from "../hooks/useSpotify";
 
 const after = (i: number) => ({
@@ -43,10 +43,11 @@ interface CardProps {
 }
 
 const Player = ({ playlistData }: CardProps) => {
-  const spotifyApi = useSpotify();
+  const { spotifyApi, deviceId } = useSpotify();
   const [gone] = useState(() => new Set());
   const [animationFinished, setAnimationFinished] = useState<number[]>([]);
   const [canStartPlaying, setCanStartPlaying] = useState(false);
+  console.log({ deviceId });
   const [currentSong, setCurrentSong] = useState(
     playlistData[playlistData.length - 1],
   );
@@ -99,10 +100,17 @@ const Player = ({ playlistData }: CardProps) => {
   }, [animationFinished]);
 
   useEffect(() => {
+    async function fetchDevices() {
+      const res = await spotifyApi.getMyDevices();
+      const devices = res.body.devices;
+      console.log(devices);
+    }
+    fetchDevices();
+  });
+
+  useEffect(() => {
     if (canStartPlaying) {
-      spotifyApi.play({
-        uris: [currentSong.uri],
-      });
+      spotifyApi.play({ uris: [currentSong.uri] });
     }
   }, [currentSong, canStartPlaying]);
 
@@ -111,7 +119,7 @@ const Player = ({ playlistData }: CardProps) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col border-red-500 border-2">
       <Navbar />
       <div className={styles.container}>
         {cards.map(({ x, y, rot, scale }, i: number) => {
